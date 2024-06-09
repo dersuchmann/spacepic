@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { tw } from "../utils/tw-dummy";
 import { css } from "@acab/ecsstatic/scss";
 
 export default function Counter({
   children,
   count: initialCount,
+  customColor,
 }: {
   children: React.ReactNode;
   count: number;
+  customColor: string;
 }) {
   const [count, setCount] = useState(initialCount);
   const add = () => {
@@ -19,27 +22,22 @@ export default function Counter({
   return (
     <>
       <div
-        className={css`
-          // tw="grid text-4xl grid-cols-3 mt-8 place-items-center"
-          display: grid;
-          font-size: 2em;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          margin-top: 2em;
-          place-items: center;
-        `}
+        className={
+          tw`grid text-4xl grid-cols-3 mt-8 place-items-center` +
+          (customColor === "blue"
+            ? css`
+                color: blue;
+              `
+            : css`
+                color: green;
+              `)
+        }
       >
         <button onClick={subtract}>-</button>
         <pre>{count}</pre>
         <button onClick={add}>+</button>
       </div>
-      <div
-        className={css`
-          // tw="text-center"
-          text-align: center;
-        `}
-      >
-        {children}
-      </div>
+      <div className={tw`text-center`}>{children}</div>
     </>
   );
 }
