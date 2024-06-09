@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { tw } from "../utils/tw-dummy";
 import { css } from "@acab/ecsstatic/scss";
 import INLINE from "../utils/inline-css";
+const styled = INLINE.css;
 
 export default function Counter({
   children,
@@ -24,7 +25,7 @@ export default function Counter({
     <>
       <div
         style={
-          INLINE.css`color: ${customColor};` 
+          styled`color: ${customColor};` 
         }
         className={
           tw`grid text-4xl grid-cols-3 mt-8 place-items-center`
