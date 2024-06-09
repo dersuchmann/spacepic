@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { tw } from "../utils/tw-dummy";
 import { css } from "@acab/ecsstatic/scss";
+import INLINE from "../utils/inline-css";
 
 export default function Counter({
   children,
@@ -22,15 +23,11 @@ export default function Counter({
   return (
     <>
       <div
+        style={
+          INLINE.css`color: ${customColor};` 
+        }
         className={
-          tw`grid text-4xl grid-cols-3 mt-8 place-items-center` +
-          (customColor === "blue"
-            ? css`
-                color: blue;
-              `
-            : css`
-                color: green;
-              `)
+          tw`grid text-4xl grid-cols-3 mt-8 place-items-center`
         }
       >
         <button onClick={subtract}>-</button>
