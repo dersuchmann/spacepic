@@ -1,0 +1,20 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Album from '../../layouts/Album.astro';
+
+export async function getStaticPaths() {
+	const albums = await getCollection('album');
+	return albums.map((album) => ({
+		params: { slug: album.slug },
+		props: { album },
+	}));
+}
+type Props = CollectionEntry<'album'>;
+
+const { album } = Astro.props;
+const { Content } = await album.render();
+---
+
+<Album {...album.data}>
+	<Content />
+</Album>
